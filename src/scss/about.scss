@@ -1,0 +1,243 @@
+@import "style.scss"; 
+//wrapperのpaddingの幅がスマホの時に変わるから.classの付け方気をつける。上下のサイズをみて、初めからwrapper_l とかサイズごとに分けた方がいい
+//marginは小さいコンポーネントごとの余白をつける時にしか使わない
+//display flex 使うところは,まとめる
+//vw,vhはウィンドウ幅に対しての値。100vhなら画面いっぱい
+// innerがあればそれを対象とする
+//そのまま縮小する感じになる。小さくした時
+//だから3cloumを縦並びにしたい時は向かない
+//https://haniwaman.com/vw/
+//list itemで横並びにする時、itemをpxで横幅指定して,小さくした時はvwを当てるとそのまま縮小する
+//スマホの時一列にしたいなら、pcの時から50% 50p% でスマホ100%にした方がいい
+//innerに15px仕込んで置くといい感じになる
+
+//基本pcの時にwidthだけはつけない。小さくした時右側にはみ出る
+//つけた時はmediaクエリでwidth100%にすること
+
+
+
+
+//同じこと
+/*
+.inner {
+  width: 620px;
+  max-width: 100%;
+}
+.inner {
+  width: 620px;
+  @include mq() {
+    width: 100%;
+  }
+}
+*/
+/*
+.list {
+  max-width: 620px;
+}
+.inner {
+  width: 620px;
+  @include mq() {
+    width: 100%;
+  }
+}
+*/
+
+//同じこと
+/*
+.inner {
+  width: 1000px;
+  boxsizing:border-box;
+}
+.inner {
+  max:width: 1000px
+}
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+//fvで全体の土台作る
+//fvに対してafterで黒色。height,widthはfvに対しての比率
+//その中にbackground-img入れる。その大きさもfv次第
+.fv {
+  height: 60vh;
+  min-height: 450px;
+  //小さくなっても高さ保つ
+  max-width: 100%;
+}
+.fv::after {
+  width: 50%;
+  height: 60vh;
+  min-height: 450px;
+}
+.kv-wrapper {
+  background-image: url('../img/heading-img.png');
+  background-size: cover;
+  position: relative;
+  height: 86%;
+  width: 76.4%;
+  }
+
+  .copy-wrapper {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translate(50%,-50%);
+    color: #fff;
+    @include md(md) {
+      text-align: right;
+      right: -80px;
+      transform: translate(0,-50%);
+    }
+  }
+
+  .copy-jp {
+    font-size: 2rem;
+    margin-bottom: 8px;
+    @include md(md) {
+      //メニューたちが
+       text-align: left;
+    }
+  }
+
+
+.vision-content {
+  max-width: 415px;
+  color:#333333;
+  line-height: 2;
+  padding-left: 15.7vw;
+  //縮小ipadまでは対応可能
+  @include mq() {
+    margin: auto;
+    padding: 0 4vw;
+    }
+}
+
+.vistion-ttl {
+  margin-bottom: 30px;
+  font-size: 3.2rem;
+  font-weight: bold;
+}
+.vision-ttl-sub {
+  margin-bottom: 30px;
+  font-size: 2.4rem;
+  font-weight: bold;
+}
+
+
+
+
+
+
+.ceo-wrapper {
+  max-width: 1100px;
+  padding: 0 30px;
+  margin: 0 auto;
+}
+
+.ceo-relative {
+  position: relative;
+  padding-top: 150px;
+}
+
+
+.ceo-overflow {
+  overflow: hidden;
+}
+
+
+.ceo-txt-wrapper {
+  margin: auto;
+  max-width: 400px;
+  padding: 120px 185px;
+  background-color: #F0F0F0;
+}
+
+
+.ceo-txt-inner {
+  max-width: 400px;
+  padding: 0 30px;
+  margin: 0 auto;
+
+}
+
+.ceo-txt {
+  line-height: 2;
+
+}
+
+.ceo-img {
+  max-width: 420px;
+  height: auto;
+  position: absolute;
+  top: 0;
+  left: 30px;
+  @include md(md) {
+    max-width: 320px;
+    }
+    @include mq() {
+      //width: 340px; //pxで指定しない
+      max-width: 90%;
+      left: 0;
+      }
+  img {
+    @include mq() {
+     object-fit: cover;
+     height: 226px;//高さ指定した上でやるとbgimgみたいにになる
+     }
+
+      }
+}
+.ceo-content {
+  max-width: 720px;
+  margin-left: auto;
+  padding: 120px 0 60px;
+  background-color: #F0F0F0;
+  @include md(md) {
+  width: 70%;
+  @include mq() {
+    width: 100%;
+    margin: auto;
+    }
+  }
+
+}
+
+.campany-list > div  {
+  display: flex;
+  padding: 20px 0;
+  max-width: 800px;
+  margin-left: auto;
+  border-bottom: 1px solid #ddd;
+  dt {
+    flex-basis: 142px;
+    font-weight: bold;
+  }
+
+}
+.map {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-top: 32.7%;
+  @include mq() {
+   padding-top: 140%;
+    }
+}
+
+iframe {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}

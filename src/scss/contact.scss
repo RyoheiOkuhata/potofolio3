@@ -1,0 +1,158 @@
+@import "style.scss"; 
+@import "about.scss"; 
+
+.kv-wrapper {
+  background-image: url('../img/about-img.png');
+  }
+
+.contact-wrapper {
+    padding: 120px 0 170px;
+  }
+.contact-inner {
+margin: auto;
+width: 700px;
+@include md(md) {
+  max-width: 100%;
+  padding: 0 50px;
+  box-sizing: border-box;
+}
+@include mq() {
+  width: 100%;
+  padding: 0 4vw;
+  box-sizing: border-box;
+  }
+}
+
+
+
+
+
+// ==============================
+// 変数
+// ==============================
+
+.contact-lead {
+  margin-bottom: 50px;
+  width: 100%;
+}
+
+// ==============================
+// 初期化
+// ==============================
+input,textarea {
+  resize: none;
+  appearance: none;
+  outline: none;
+  border: none;
+  width: 100%;
+}
+
+.form-item {
+margin-bottom: 40px;
+}
+.inquiry-type-list {
+ display: flex;
+ align-items: center;
+ @include mq() {
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 14px;
+
+  }
+}
+
+.inquiry-type-item {
+  margin-right: 50px;
+}
+.radio-btn {
+  width: 20px;
+  height: 20px;
+  border: solid 1px #333; 
+  border-radius: 50%;
+  vertical-align: -4px;
+
+  
+}
+
+.radio-btn:checked {
+  background-color: #333;
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 1px #333;
+}
+.radio-btn:hover,.submit-btn {
+cursor: pointer;
+}
+
+.text-box {
+  border: 1px solid #333;
+  color: #333;
+  padding: 10px;
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+}
+
+.textarea {
+  border: 1px solid #333;
+  color: #333;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.required {
+  display: inline-block;
+  background-color: #333;
+  color: #fff;
+  font-size: 1.2rem;
+  padding: 3px 5px;
+  margin-left: 6px;
+}
+.form-item-title {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.privacy-policy-title {
+  font-weight:bold;
+  margin-bottom: 10px;
+}
+
+.privacy-policy-detail {
+padding: 10px;
+height: 230px;
+border: 1px solid #333;
+overflow: scroll;
+margin-bottom: 40px;
+}
+
+
+
+
+.confirm {
+  text-align: center;
+}
+.checkbox {
+  border: 1px solid #333;
+  margin-right: 8px;
+  width: 18px;
+  height: 18px;
+  vertical-align: -3px;
+}
+
+
+
+.submit-btn {
+  color: #fff;
+  background-color: #000;
+  width: 160px;
+  line-height: 36px;
+  font-size: 1.2rem;
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  margin: 40px auto 0;
+}
+
+.select {
+  width: 100%;
+  
+}

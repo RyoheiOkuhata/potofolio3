@@ -1,0 +1,440 @@
+
+// ==================================
+// funcdation
+// ==================================
+// ==============================
+// 変数
+// ==============================
+$font-color_default: #FFFFFF;
+$font-color_sub: #333333; 
+$btn-color: #000000; 
+$bg-color-sub: #FFFFFF;
+
+
+
+$site-width: 1100px;
+
+$font-size_s: 12px;
+$font-size_m: 14px;
+$font-size_default: 16px;
+$font-size_l: 18px;
+$font-size_xl: 24px;
+$font-size_xxl: 30px;
+$font-size_3l: 38px;
+
+$space_s: 5px;
+$space_m: 10px;
+$space_l: 15px;
+$space_xl: 20px;
+$space_xxl: 30px;
+$space_3l: 40px;
+
+$font-family_corp: 'Amatic SC', cursive;
+
+
+$breakpoints: (
+  'sm': 'screen and (max-width: 414px)',
+  'md': 'screen and (max-width: 768px)',
+  'lg': 'screen and (max-width: 1000px)',
+  'xl': 'screen and (max-width: 1200px)',
+) !default;
+
+
+@mixin mq($breakpoint: sm) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+@mixin md($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+
+// ==============================
+// base
+// ==============================
+html{
+  font-size: 62.5%;
+  /*=10px */
+ }
+ body{
+   font-size: 1.6rem;
+    /*16px */
+
+   letter-spacing: 0.5em;
+    /*50px */
+   font-family: 'Noto Serif','Noto Serif JP', serif;
+   color: $font-color_sub;
+ }
+ img{
+   vertical-align: bottom;
+   width: 100%;//親に対してmax-widthつける
+ }
+
+ a {
+   text-decoration: none;
+   transition: .3s;
+   color: $font-color_default;
+   //imline-black
+ }
+ a:hover {
+  transition: .3s;//aタグのhoverはだいたいこれ
+  opacity: .7;
+}
+
+button :hover {
+  transition: .3s;//aタグのhoverはだいたいこれ
+  opacity: .7;
+  cursor: pointer;
+  
+}
+
+
+
+// ==============================
+// base2
+// ==============================
+//paddingはbg-colorに含まれる
+.section-wrapper {
+padding: 60px 0;
+}
+.section-inner {
+  max-width: $site-width;
+  margin: 0  auto;
+  padding: 0 1.5rem;
+  @include mq() {
+  }
+}
+.btn {
+  margin-top: 30px;
+  padding: 12px 40px;
+  background: $btn-color;
+  color: $bg-color-sub;
+  display: block;
+  font-size: 1.2rem;
+}
+.section-ttl {
+font-size: 3.2rem;
+font-weight: bold;
+margin-bottom: 30px;
+}
+
+
+
+
+// ==============================
+// header
+// ==============================
+.header {
+  position: absolute;
+  top:0;
+  left: 0;
+}
+.logo {
+  width: 260px;
+  position: fixed;
+  top: 38px;
+  left: 4vw;
+  z-index: 1;
+  @include mq() {
+    width: 190px;
+
+  }
+}
+// ==============================
+// navigation
+// ==============================
+.header-nav {
+  background-color: rgba(35,35,35,0.95);
+  position: fixed;
+  top: 0;
+  right:0;
+  height: 100vh;
+  width: 36.1vw;
+  padding: 120px 0 0 ;
+  z-index: 2;
+  //ここで隠している
+  transform: translateX(100%);
+  opacity: 0;
+  transition: transform .3s, opacity .3s;
+
+ .nav {
+    &-item {
+      margin-bottom: 30px;
+    }
+    &-item :first-of-type {
+      margin-bottom: 40px;
+    }
+    &-link {
+      display: block;
+      text-align: center;
+      font-size: 2rem;
+    }
+    &-img {
+      max-width: 45px;
+      height: auto;
+      margin: auto;
+    }
+    }
+    &.active {
+      //transformを0.3かけながら0にしつつ、opacityも0.3秒かけながら1にする
+      transform: translateX(0);
+      opacity: 1;
+      transition: transform.3s , opacity .3s;
+    }
+
+    @include mq() {
+      width: 50%;
+    }
+}
+
+
+
+// ==============================
+// burger
+// ==============================
+.bars-triggre { //todoリファクタ
+  position: fixed;
+  align-items: center;
+  top: 38px;
+  right: 4vh;
+  z-index: 3; 
+.bar {
+  display: block;
+  background-color: #fff;
+  border-radius: 1px;
+  height: 2px;
+  width: 22px;
+  &:nth-of-type(1) {
+    transform: translateY(-4px);
+    transition: transform .3s;
+  }
+  &:nth-of-type(3) {
+    transform: translateY(4px);
+    transition: transform .3s;
+  }
+}
+
+  &.active span {
+
+    &:nth-of-type(1) {
+      transform: translateY(2px) rotate(30deg);
+      transition: transform  .3s;
+    }
+    //2本め
+    &:nth-of-type(2) {
+      opacity: 0; //消す
+    }
+    //3本め
+    &:nth-of-type(3) {
+      transform: translateY(-2px) rotate(-30deg);
+      transition: transform  .3s;
+
+    }
+  }
+
+
+}
+
+//fvで全体の土台作る
+//fvに対してafterで黒色。height,widthはfvに対しての比率
+//その中にbackground-img入れる。その大きさもfv次第
+
+
+// ==============================
+// fv
+// ==============================
+.fv {
+  height: 100vh;
+}
+.fv::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top:0;
+  right: 0;
+  background-color:#222222;
+  width: 50%;
+  height: 100%;
+  z-index: -1;
+}
+.kv-wrapper {
+background-image: url('../img/kv-img.png');
+background-size: cover;
+position: relative;
+height: 86.5%;
+width: 76.4%;
+}
+.copy-wrapper {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translate(50%,-50%);
+  color: #fff;
+  @include mq() {
+    text-align: right;
+    right: -50px;
+    transform: translate(0,-50%);
+  }
+}
+
+.copy-jp {
+  font-size: 2rem;
+  margin-bottom: 8px;
+  @include mq() {
+    //メニューたちが
+     font-size: 1.6rem;
+  }
+}
+.copy-en {
+  font-size: 2rem;
+  @include mq() {
+    //メニューたちが
+    font-size: 1.6rem;
+  }
+}
+.copy-main {
+  font-size: 7.2rem;
+  font-weight: bold;
+  line-height: 2;
+  @include mq() {
+    font-size: 5.6rem;
+  }
+}
+
+
+
+// ==============================
+// 変数
+// ==============================
+.section-wrapper:first-of-type {
+  padding-top: 120px;
+  position: relative;
+  @include mq() {
+    padding-top: 80px  0px;
+  }
+}
+
+
+.bg-about-gray::after {
+  content:"";
+  height: 160px;
+  display: block;
+  background-color: #F2F2F2;
+ position: absolute;
+ bottom: 0;
+ z-index: -1;
+ min-width: 100vw;
+}
+
+.bg-about {
+  background-image: url('../img/about-img.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  //高さ指定しない
+  //height: 600px;
+  position: relative;
+  padding:110px 50px;
+  @include mq() {
+  padding: 50px  15px;
+  }
+}
+
+//postion でやるとレスポンシブの時だるいから極力使わない
+.about-content {
+background-color: rgba(255,255,255,0.95);
+//position: absolute;
+//top: 150px;
+//left: 50px;
+max-width: 590px;
+padding: 50px 30px;
+box-sizing: border-box;
+line-height: 2;
+@include mq() {
+
+}
+}
+
+// ==============================
+// 変数
+// ==============================
+.panel-list {
+  display: flex;
+  justify-content: space-between;
+  @include mq() {
+flex-direction: column;
+align-items: flex-start;
+  }
+}
+.panel-item {
+  max-width: 700px; 
+  @include mq() {
+    margin-bottom: 30px;
+   }
+}
+.panel-img {
+  margin-bottom: 30px;
+}
+
+.bg-color {
+  background-color: #F2F2F2;
+  @include mq() {
+    padding-top: 30px;
+   }
+}
+// ==============================
+// 変数
+// ==============================
+.topic-date {
+  margin-bottom: 13px;
+}
+.topic-list {
+  padding:  0px 0 32px 0;
+  margin-bottom: 30px;
+  border-bottom: #DDDDDD 1px solid;
+}
+.topic-wrapper {
+  margin-left:auto ;//右側に配置される
+  max-width: 700px;
+}
+
+.btn-topic {
+  margin-left: auto;
+}
+
+.contact-list {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include mq() {
+    flex-direction: column-reverse;
+   }
+}
+.contact-item {
+width: 40%;
+@include mq() {
+  width: 100%;
+ }
+&-img {
+  width: 52.7%;
+  @include mq() {
+    width: 100%;
+    margin-bottom: 30px;
+   }
+}
+}
+
+
+
+.footer {
+  background-color:#525252;
+  text-align: center;
+  &-txt {
+    padding: 20px 0;
+    color: $font-color_default;
+  }
+}
